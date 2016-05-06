@@ -227,5 +227,5 @@ exec_always feh --bg-scale /home/sashe/Pictures/wallhaven-170258.jpg
 
 
 # Autostart
-exec google-chrome-stable
 exec_always compton
+exec --no-startup-id exec mpd

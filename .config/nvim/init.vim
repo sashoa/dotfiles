@@ -18,11 +18,26 @@
  NeoBundleFetch 'Shougo/neobundle.vim'
 
  " My Bundles here:
-   
+   NeoBundle 'scrooloose/nerdtree'
+
+ " Syntax Bundles
+   NeoBundle 'valloric/MatchTagAlways', {'on_ft': 'html'}
+   NeoBundle 'tpope/vim-fugitive'
+   NeoBundle 'Xuyuanp/nerdtree-git-plugin'
+   NeoBundle 'benekastah/neomake'
+   NeoBundle 'tpope/vim-surround'
+   NeoBundle 'Chiel92/vim-autoformat'
+   NeoBundle 'Yggdroot/indentLine'
+   NeoBundle 'valloric/MatchTagAlways', {'on_ft': 'html'}
+   NeoBundle 'Raimondi/delimitMate', {'on_ft': ['javascript', 'css', 'scss']}
+
+
+ " Theme Bundles
+   NeoBundle 'vim-airline/vim-airline'
+   NeoBundle 'ryanoasis/vim-devicons'
    NeoBundle 'mhartington/oceanic-next'
    NeoBundle 'frankier/neovim-colors-solarized-truecolor-only'
-   NeoBundle 'ryanoasis/vim-devicons'
-   NeoBundle 'scrooloose/nerdtree'
+
 
  " Refer to |:NeoBundle-examples|.
  " Note: You don't set neobundle setting in .gvimrc!
@@ -36,6 +51,10 @@
  " this will conveniently prompt you to install them.
  NeoBundleCheck
 
+" Settings
+  set pastetoggle=<f6>
+  set nopaste
+  set tabstop=2 shiftwidth=2 expandtab
 " Numbers
   set relativenumber number
 
@@ -44,6 +63,11 @@
  syntax enable
  colorscheme OceanicNext
  set background=dark
+
+
+" Mappings
+
+  noremap <leader>f :Autoformat<CR>
  
  " NERDTree ------------------------------------------------------------------{{{
 
@@ -74,3 +98,87 @@ call NERDTreeHighlightFile('ds_store', 'Gray', 'none', '#686868', 'none')
 call NERDTreeHighlightFile('gitconfig', 'black', 'none', '#686868', 'none')
 call NERDTreeHighlightFile('gitignore', 'Gray', 'none', '#7F7F7F', 'none')
 "}}}
+
+
+" vim-airline ---------------------------------------------------------------{{{
+let g:airline#extensions#tabline#enabled = 1
+set hidden
+let g:airline#extensions#tabline#fnamemod = ':t'
+let g:airline#extensions#tabline#show_tab_nr = 1
+let g:airline_powerline_fonts = 1
+let g:airline_theme='oceanicnext'
+
+let g:airline#extensions#tabline#buffer_idx_mode = 1
+  nmap <leader>1 <Plug>AirlineSelectTab1
+  nmap <leader>2 <Plug>AirlineSelectTab2
+  nmap <leader>3 <Plug>AirlineSelectTab3
+  nmap <leader>4 <Plug>AirlineSelectTab4
+  nmap <leader>5 <Plug>AirlineSelectTab5
+  nmap <leader>6 <Plug>AirlineSelectTab6
+  nmap <leader>7 <Plug>AirlineSelectTab7
+  nmap <leader>8 <Plug>AirlineSelectTab8
+  nmap <leader>9 <Plug>AirlineSelectTab9
+  nmap <leader>- <Plug>AirlineSelectPrevTab
+  nmap <leader>+ <Plug>AirlineSelectNextTab
+"}}}
+
+
+" Fold, gets it's own section  ----------------------------------------------{{{
+
+function! MyFoldText() " {{{
+    let line = getline(v:foldstart)
+
+    let nucolwidth = &fdc + &number * &numberwidth
+    let windowwidth = winwidth(0) - nucolwidth - 3
+    let foldedlinecount = v:foldend - v:foldstart
+
+    " expand tabs into spaces
+    let onetab = strpart('          ', 0, &tabstop)
+    let line = substitute(line, '\t', onetab, 'g')
+
+    let line = strpart(line, 0, windowwidth - 2 -len(foldedlinecount))
+    let fillcharcount = windowwidth - len(line) - len(foldedlinecount)
+    return line . '…' . repeat(" ",fillcharcount) . foldedlinecount . '…' . ' '
+endfunction " }}}
+
+function! JavaScriptFold() "{{{
+  " syntax region foldBraces start=/{/ end=/}/ transparent fold keepend extend
+  setlocal foldmethod=syntax
+  setlocal foldlevel=99
+  echo "hello"
+  syn region foldBraces start=/{/ skip=/\(\/\/.*\)\|\(\/.*\/\)/ end=/}/ transparent fold keepend extend
+endfunction "}}}
+
+" function! HTMLFold() "{{{
+"   " syn sync fromstart
+"   set foldmethod=syntax
+"   syn region HTMLFold start=+^<\([^/?!><]*[^/]>\)\&.*\(<\1\|[[:alnum:]]\)$+ end=+^</.*[^-?]>$+ fold transparent keepend extend
+"   syn match HTMLCData "<!\[CDATA\[\_.\{-}\]\]>" fold transparent extend
+"   syn match HTMLCommentFold "<!--\_.\{-}-->" fold transparent extend
+" endfunction "}}}
+
+set foldtext=MyFoldText()
+
+autocmd InsertEnter * if !exists('w:last_fdm') | let w:last_fdm=&foldmethod | setlocal foldmethod=manual | endif
+autocmd InsertLeave,WinLeave * if exists('w:last_fdm') | let &l:foldmethod=w:last_fdm | unlet w:last_fdm | endif
+
+autocmd FileType vim setlocal fdc=1
+set foldlevel=99
+" Space to toggle folds.
+nnoremap <Space> za
+vnoremap <Space> za
+autocmd FileType vim setlocal foldmethod=marker
+autocmd FileType vim setlocal foldlevel=0
+
+" au FileType html call HTMLFold()
+" autocmd FileType html setlocal foldmethod=syntax
+autocmd FileType html setlocal fdl=99
+
+" autocmd FileType javascript call JavaScriptFold()
+autocmd FileType javascript,html,css,scss,typescript setlocal foldlevel=99
+autocmd FileType javascript,typescript,css,scss,json setlocal foldmethod=marker
+autocmd FileType javascript,typescript,css,scss,json setlocal foldmarker={,}
+autocmd FileType coffee setl foldmethod=indent
+" au FileType html nnoremap <buffer> <leader>F zfat
+
+let g:indentLine_char='│'

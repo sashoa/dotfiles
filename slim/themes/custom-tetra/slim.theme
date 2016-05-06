@@ -1,0 +1,38 @@
+# arch-tetra theme for SLiM
+# by Jussi Timperi
+# email: jussi.timperi AT gmail DOT com
+# based on dwm02 theme
+# by Thayer Williams 
+# email: thayerw AT gmail DOT com
+# website: http://cinderwick.ca/
+
+# Messages (ie: shutdown)
+msg_color               #ffffff
+msg_font                edges:antialias=True:hinting=True
+msg_x                   75%
+msg_y                   50%
+
+# valid values: stretch, tile
+background_style        stretch
+background_color        #000000
+
+# Input controls (relative to panel)
+input_panel_x           50%
+input_panel_y           15%
+input_name_x            130
+input_name_y            110
+input_pass_x            130
+input_pass_y            130
+input_font          	SFNS Display:edges:antialias=True:hinting=True
+input_color             #ffffff
+
+# Username / password request (relative to panel)
+username_font          	Roboto Mono:size=12:edges:antialias=True:hinting=True
+username_color        	#ffffff
+username_x              19
+username_y              110
+password_x              19
+password_y              130
+
+username_msg            username <
+password_msg            password <

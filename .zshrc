@@ -5,7 +5,7 @@
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="robbyrussell"
+ZSH_THEME="bira"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -56,8 +56,7 @@ autoload -U compinit && compinit
 
 # User configuration
 
-  export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl"
-  export PATH=/home/.local/bin:$PATH
+  export PATH="$HOME/.node_modules/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:$HOME/.rvm/bin:$(ruby -e 'print Gem.user_dir')/bin"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
@@ -87,8 +86,14 @@ source $ZSH/oh-my-zsh.sh
 alias zconfig="nvim ~/.zshrc"
 alias zsource="source ~/.zshrc"
 alias i3config="nvim ~/.config/i3/config" 
+alias nconfig="nvim ~/.config/nvim/init.vim"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # Highlighting
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets cursor)
 
+
+export NVM_DIR="/home/sashe/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
