@@ -98,11 +98,10 @@ bindsym $mod+a focus parent
 #<span foreground='blue'>not that font! t_t</span>"
 
 set $workspace1 "1:<span font='SFNS Display Bold'></span>"
-#set $workspace2 "2: Web"
 set $workspace2 "2:<span font='SFNS Display Bold'> Web</span>"
 set $workspace3 "3:<span font='SFNS Display Bold'> Code</span>"
-set $workspace4 "4:<span font='SFNS Display Bold'> Music</span>"
-set $workspace5 "5"
+set $workspace4 "4:<span font='SFNS Display Bold'> Slack</span>"
+set $workspace5 "5:<span font='SFNS Display Bold'> Music</span>"
 set $workspace6 "6"
 set $workspace7 "7"
 set $workspace8 "8"
@@ -136,6 +135,7 @@ bindsym $mod+Shift+0 move container to workspace $workspace10
 
 assign [class="Firefox"] $workspace2
 assign [class="google-chrome"] $workspace2
+assign [class="Slack"] $workspace4
 
 
 
@@ -192,7 +192,7 @@ bar {
         focused_workspace  #222222 #222222 #F17053
         active_workspace   #222222 #5f676a #ffffff
         inactive_workspace #222222 #222222 #888888
-        urgent_workspace   #222222 #222222 #900000
+        urgent_workspace   #222222 #222222 #00B16A
         binding_mode       #222222 #900000 #ffffff
 
     }
