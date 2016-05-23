@@ -19,7 +19,12 @@
 
  " My Bundles here:
    NeoBundle 'scrooloose/nerdtree'
-
+   NeoBundle 'xolox/vim-misc'
+   NeoBundle 'xolox/vim-notes'
+   " Autocomplete
+   NeoBundle 'Shougo/deoplete.nvim'
+   NeoBundle 'Shougo/neosnippet.vim'
+   NeoBundle 'Shougo/neosnippet-snippets'
  " Syntax Bundles
    NeoBundle 'valloric/MatchTagAlways', {'on_ft': 'html'}
    NeoBundle 'tpope/vim-fugitive'
@@ -64,11 +69,35 @@
  colorscheme OceanicNext
  set background=dark
 
+ " Deoplete
+  let g:deoplete#enable_at_startup = 1
 
-" Mappings
 
-  noremap <leader>f :Autoformat<CR>
+
+ " Mappings -------------------------------------------------------------{{{
+
+ noremap <leader>f :Autoformat<CR>
+
+ " Plugin key-mappings.
+ imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+ smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+ xmap <C-k>     <Plug>(neosnippet_expand_target)
  
+ " SuperTab like snippets behavior.
+ "imap <expr><TAB>
+ " \ pumvisible() ? "\<C-n>" :
+ " \ neosnippet#expandable_or_jumpable() ?
+ " \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+ \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+ 
+ " For conceal markers.
+ if has('conceal')
+   set conceallevel=2 concealcursor=niv
+ endif
+ "}}}
+
+
  " NERDTree ------------------------------------------------------------------{{{
 
 map <C-\> :NERDTreeToggle<CR>
@@ -182,3 +211,6 @@ autocmd FileType coffee setl foldmethod=indent
 " au FileType html nnoremap <buffer> <leader>F zfat
 
 let g:indentLine_char='│'
+
+
+
