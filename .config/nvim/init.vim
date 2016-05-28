@@ -21,6 +21,9 @@
    NeoBundle 'scrooloose/nerdtree'
    NeoBundle 'xolox/vim-misc'
    NeoBundle 'xolox/vim-notes'
+   NeoBundle 'tpope/vim-commentary'
+   " Unite
+   NeoBundle 'Shougo/unite.vim'
    " Autocomplete
    NeoBundle 'Shougo/deoplete.nvim'
    NeoBundle 'Shougo/neosnippet.vim'
@@ -34,7 +37,10 @@
    NeoBundle 'Chiel92/vim-autoformat'
    NeoBundle 'Yggdroot/indentLine'
    NeoBundle 'valloric/MatchTagAlways', {'on_ft': 'html'}
-   NeoBundle 'Raimondi/delimitMate', {'on_ft': ['javascript', 'css', 'scss']}
+   NeoBundle 'Raimondi/delimitMate', {'on_ft': ['ruby', 'javascript', 'css', 'scss']}
+   NeoBundle 'vim-scripts/argtextobj.vim'
+   NeoBundle 'kana/vim-textobj-user'
+   NeoBundle 'nelstrom/vim-textobj-rubyblock'
 
 
  " Theme Bundles
@@ -96,6 +102,11 @@
    set conceallevel=2 concealcursor=niv
  endif
  "}}}
+
+ noremap <Up> <NOP>
+ noremap <Down> <NOP>
+ noremap <Left> <NOP>
+ noremap <Right> <NOP>
 
 
  " NERDTree ------------------------------------------------------------------{{{
@@ -213,4 +224,6 @@ autocmd FileType coffee setl foldmethod=indent
 let g:indentLine_char='│'
 
 
+
+let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
