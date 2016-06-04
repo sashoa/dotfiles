@@ -49,7 +49,7 @@ ZSH_THEME="honukai"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-completions thefuck zsh-syntax-highlighting)
+plugins=(git zsh-completions thefuck zsh-syntax-highlighting node colored-man-pages) 
 
 # Completions
 autoload -U compinit && compinit
@@ -59,14 +59,7 @@ autoload -U compinit && compinit
   export PATH="$HOME/.node_modules/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:$HOME/.rvm/bin:$(ruby -e 'print Gem.user_dir')/bin"
 # export MANPATH="/usr/local/man:$MANPATH"
 
-source $ZSH/oh-my-zsh.sh
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
+source $ZSH/oh-my-zsh.sh # You may need to manually set your language environment export LANG=en_US.UTF-8 Preferred editor for local and remote sessions if [[ -n $SSH_CONNECTION ]]; then export EDITOR='vim'
 # else
 #   export EDITOR='mvim'
 # fi
@@ -97,3 +90,5 @@ export NVM_DIR="/home/sashe/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+
+source ~/.oh-my-zsh/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh

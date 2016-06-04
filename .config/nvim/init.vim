@@ -22,6 +22,8 @@
    NeoBundle 'xolox/vim-misc'
    NeoBundle 'xolox/vim-notes'
    NeoBundle 'tpope/vim-commentary'
+   NeoBundle 'airblade/vim-gitgutter'
+   NeoBundle 'terryma/vim-expand-region'
    " Unite
    NeoBundle 'Shougo/unite.vim'
    " Autocomplete
@@ -66,6 +68,7 @@
   set pastetoggle=<f6>
   set nopaste
   set tabstop=2 shiftwidth=2 expandtab
+  set updatetime=250
 " Numbers
   set relativenumber number
 
