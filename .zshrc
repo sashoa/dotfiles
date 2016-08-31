@@ -49,14 +49,14 @@ ZSH_THEME="honukai"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-completions thefuck zsh-syntax-highlighting node colored-man-pages) 
+plugins=(git zsh-completions thefuck zsh-syntax-highlighting node colored-man-pages z) 
 
 # Completions
 autoload -U compinit && compinit
 
 # User configuration
 
-  export PATH="$HOME/.node_modules/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:$HOME/.rvm/bin:$(ruby -e 'print Gem.user_dir')/bin"
+  export PATH="$HOME/.node_modules/bin:/opt/Pomello:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:$HOME/.rvm/bin:$(ruby -e 'print Gem.user_dir')/bin"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh # You may need to manually set your language environment export LANG=en_US.UTF-8 Preferred editor for local and remote sessions if [[ -n $SSH_CONNECTION ]]; then export EDITOR='vim'

@@ -14,13 +14,13 @@ search_wrap = true
 #geometry = 640x480
 
 # "system", "on" or "off"
-cursor_blink = system
+cursor_blink = on
 
 # "block", "underline" or "ibeam"
 cursor_shape = underline 
 
 # $BROWSER is used by default if set, with xdg-open as a fallback
-browser = google-chrome-stable 
+browser = google-chrome-stable
 
 # set size hints for the window
 #size_hints = false

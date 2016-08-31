@@ -24,8 +24,18 @@
    NeoBundle 'tpope/vim-commentary'
    NeoBundle 'airblade/vim-gitgutter'
    NeoBundle 'terryma/vim-expand-region'
+   NeoBundle 'ap/vim-css-color'
+   NeoBundle 'KabbAmine/zeavim.vim'
+   NeoBundle 'thoughtbot/vim-rspec'
    " Unite
    NeoBundle 'Shougo/unite.vim'
+   NeoBundle 'Shougo/vimproc.vim', {
+\ 'build' : {
+\     'linux' : 'make',
+\    },
+\ }
+   NeoBundle 'Shougo/neomru.vim'
+
    " Autocomplete
    NeoBundle 'Shougo/deoplete.nvim'
    NeoBundle 'Shougo/neosnippet.vim'
@@ -43,6 +53,10 @@
    NeoBundle 'vim-scripts/argtextobj.vim'
    NeoBundle 'kana/vim-textobj-user'
    NeoBundle 'nelstrom/vim-textobj-rubyblock'
+   NeoBundle 'suan/vim-instant-markdown'
+
+   " Rails
+   NeoBundle 'tpope/vim-rails'
 
 
  " Theme Bundles
@@ -69,6 +83,7 @@
   set nopaste
   set tabstop=2 shiftwidth=2 expandtab
   set updatetime=250
+
 " Numbers
   set relativenumber number
 
@@ -81,11 +96,16 @@
  " Deoplete
   let g:deoplete#enable_at_startup = 1
 
+" RSpec.vim mappings
+  " map <Leader>t :call RunCurrentSpecFile()<CR>
+  " map <Leader>s :call RunNearestSpec()<CR>
+  " map <Leader>l :call RunLastSpec()<CR>
+  " map <Leader>a :call RunAllSpecs()<CR>
 
 
  " Mappings -------------------------------------------------------------{{{
 
- noremap <leader>f :Autoformat<CR>
+ " noremap <leader>f :Autoformat<CR>
 
  " Plugin key-mappings.
  imap <C-k>     <Plug>(neosnippet_expand_or_jump)
@@ -142,6 +162,27 @@ call NERDTreeHighlightFile('gitconfig', 'black', 'none', '#686868', 'none')
 call NERDTreeHighlightFile('gitignore', 'Gray', 'none', '#7F7F7F', 'none')
 "}}}
 
+" Unite -----------------------------------------------------------------------------------{{{
+let g:unite_source_history_yank_enable = 1
+call unite#filters#matcher_default#use(['matcher_fuzzy'])
+nnoremap <leader>t :<C-u>Unite -buffer-name=files   -start-insert file_rec/async:!<cr>
+nnoremap <leader>f :<C-u>Unite -buffer-name=files   -start-insert file<cr>
+nnoremap <leader>r :<C-u>Unite -buffer-name=mru     -start-insert file_mru<cr>
+nnoremap <leader>o :<C-u>Unite -buffer-name=outline -start-insert outline<cr>
+nnoremap <leader>y :<C-u>Unite -buffer-name=yank    history/yank<cr>
+nnoremap <leader>e :<C-u>Unite -buffer-name=buffer  buffer<cr>
+
+" Custom mappings for the unite buffer
+autocmd FileType unite call s:unite_settings()
+function! s:unite_settings()
+  " Play nice with supertab
+  let b:SuperTabDisabled=1
+  " Enable navigation with control-j and control-k in insert mode
+  imap <buffer> <C-j>   <Plug>(unite_select_next_line)
+  imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
+endfunction
+
+"}}}
 
 " vim-airline ---------------------------------------------------------------{{{
 let g:airline#extensions#tabline#enabled = 1

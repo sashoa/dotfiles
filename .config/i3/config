@@ -138,6 +138,11 @@ assign [class="google-chrome"] $workspace2
 assign [class="Slack"] $workspace4
 
 
+# Chrome App opens in floating mode
+for_window [class="google-chrome" window_role="app"] floating enable sticky enable
+for_window [class="Pomello"] floating enable sticky enable
+for_window [class="Zeal"] floating enable
+
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -145,6 +150,7 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+# Keyboard Layout
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -177,7 +183,7 @@ bindsym $mod+r mode "resize"
 
 for_window [class="^.*"] border pixel 0
 gaps inner 14
-gaps outer 17
+gaps outer 19
 
 
 bar {
@@ -198,10 +204,11 @@ bar {
     }
 
         strip_workspace_numbers yes
-        tray_output primary
+        tray_output HDMI-0
         position top
   	#status_command i3blocks -c ~/.config/i3/i3blocks.conf
         status_command ~/.config/i3/statusline
+
 }
 
 
@@ -215,6 +222,9 @@ bindsym $mod+c exec google-chrome-stable
 bindsym --release Caps_Lock exec pkill -SIGRTMIN+11 i3blocks
 bindsym --release Num_Lock  exec pkill -SIGRTMIN+11 i3blocks 
 
+set $Mod_app Mod4+Shift
+bindsym $Mod_app+p exec emacsclient -c
+
 # Mounting
 exec --no-startup-id "devmon --no-gui"
 
@@ -227,4 +237,10 @@ exec_always feh --bg-scale /home/sashe/Pictures/wallhaven-170258.jpg
 
 
 # Autostart
-exec --no-startup-id exec mpd
+exec --no-startup-id mpd
+exec --no-startup-id dropbox
+
+# Pomello
+# exec --no-startup-id /opt/google/chrome/google-chrome --profile-directory=Default --app-id=ahjnfakocpfoocnncbgmondnnnlfjide
+exec --no-startup-id Pomello
+exec --no-startup-id slack
