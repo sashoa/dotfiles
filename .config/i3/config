@@ -136,12 +136,18 @@ bindsym $mod+Shift+0 move container to workspace $workspace10
 assign [class="Firefox"] $workspace2
 assign [class="google-chrome"] $workspace2
 assign [class="Slack"] $workspace4
+assign [class="crx_hmjkmjkepdijhoojdojkdfohbdgmmhki"] $workspace1
 
 
 # Chrome App opens in floating mode
 for_window [class="google-chrome" window_role="app"] floating enable sticky enable
 for_window [class="Pomello"] floating enable sticky enable
+# Thunar opens in floating mode
+for_window [class="thunar"] floating enable
+# Keep
+for_window [class="hmjkmjkepdijhoojdojkdfohbdgmmhki"] floating enable sticky enable
 for_window [class="Zeal"] floating enable
+for_window [title="Gitter"] floating enable
 
 
 # reload the configuration file
@@ -231,6 +237,8 @@ exec --no-startup-id "devmon --no-gui"
 # i3lock
 bindsym $mod+shift+x exec /home/sashe/.config/i3/i3lock-fancy/lock 
 
+# Screenshots
+bindsym $mod+p exec scrot $HOME/Pictures/Screenshots/`date +%Y-%m-%d_%H:%M:%S`.png
 
 # Wallpaper
 exec_always feh --bg-scale /home/sashe/Pictures/wallhaven-170258.jpg
@@ -240,7 +248,13 @@ exec_always feh --bg-scale /home/sashe/Pictures/wallhaven-170258.jpg
 exec --no-startup-id mpd
 exec --no-startup-id dropbox
 
+exec --no-startup-id mpd
 # Pomello
 # exec --no-startup-id /opt/google/chrome/google-chrome --profile-directory=Default --app-id=ahjnfakocpfoocnncbgmondnnnlfjide
 exec --no-startup-id Pomello
+
+# Google Keep
+exec --no-startup-id /opt/google/chrome/google-chrome --profile-directory=Default --app-id=hmjkmjkepdijhoojdojkdfohbdgmmhki
+
+# Slack
 exec --no-startup-id slack

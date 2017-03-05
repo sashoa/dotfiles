@@ -1,0 +1,24 @@
+[user]
+	email = sash239@gmail.com
+	name = Sashe
+[color]
+  ui = true
+	diff = auto
+	status = auto
+[color "branch"]
+  current = yellow black
+  local = yellow
+  remote = magenta
+[color "diff"]
+  meta = yellow bold
+  frag = magenta bold
+  old = red
+  new = green
+  whitespace = white reverse
+[color "status"]
+  added = yellow
+  changed = green
+  untracked = cyan
+  branch = magenta
+[commit]
+  template = ~/Dev/dotfiles/gitconfig/commit_template
